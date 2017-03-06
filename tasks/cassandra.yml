@@ -1,0 +1,33 @@
+---
+- name: Install cassandra
+  docker_service:
+    project_name: cassandra_cluster
+    definition:
+      version: '2'
+      services:
+        cassandra:
+          image: cassandra:3.10
+          ports:
+            - "4040:4040"
+            - "61621:61621"
+            - "7077:7077"
+            - "7080:7080"
+            - "7081:7081"
+            - "7199:7199"
+            - "9042:9042"
+            - "9160:9160"
+          network_mode: "host"
+          environment:
+            - CASSANDRA_CLUSTER_NAME={{cassandra.cluster_name}}
+            - CASSANDRA_NUM_TOKENS={{cassandra.num_tokens}}
+            - CASSANDRA_SEEDS={{ groups["cassandra_group"] | join(",") }}
+            - CASSANDRA_LISTEN_ADDRESS={{ hostvars[inventory_hostname]['inventory_hostname'] }}
+            - CASSANDRA_BROADCAST_ADDRESS={{ hostvars[inventory_hostname]['inventory_hostname'] }}
+            - CASSANDRA_RPC_ADDRESS={{ hostvars[inventory_hostname]['inventory_hostname'] }}
+            - CASSANDRA_DATA_FILE_DIRECTORIES={{cassandra.data_file_directories}}
+            - CASSANDRA_COMMITLOG_DIRECTORY={{cassandra.commitlog_directory}}
+            - CASSANDRA_SAVED_CACHES_DIRECTORY={{cassandra.saved_caches_directory}}
+            - CASSANDRA_LOG_DIR={{cassandra.log_dir}}
+            - CASSANDRA_ENDPOINT_SNITCH={{cassandra.endpoint_snitch}}
+            - CASSANDRA_RACK={{cassandra.rack}}
+            - CASSANDRA_DC={{cassandra.dc}}

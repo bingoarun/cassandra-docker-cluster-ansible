@@ -1,0 +1,12 @@
+---
+# vars file for cassandra-docker-cluster
+cassandra:
+  cluster_name: testdb
+  num_tokens: 256
+  data_file_directories: [/var/lib/cassandra/data]
+  commitlog_directory: /data/cassandra/commitlog
+  saved_caches_directory: /data/cassandra/saved_caches
+  log_dir:"/logs/cassandra"
+  endpoint_snitch: GossipingPropertyFileSnitch
+  rack: rack1
+  dc: dc1
