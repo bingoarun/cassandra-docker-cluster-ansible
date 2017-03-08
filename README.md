@@ -1,38 +1,50 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Cassandra role to create a dockerized multi-node cassandra cluster.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ensure that the target nodes have docker installed.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+* `cluster_name`: Name of the cluster
+* `num_tokens`: Number of tokens
+* `data_file_directories`: Data file directories in array format
+
+  Eg: [/var/lib/cassandra/data,/media/mydisk]
+
+
+* `commitlog_directory`: Commitlog directory
+* `saved_caches_directory`: Saved caches directory
+* `endpoint_snitch`: Endpoint snitch (Eg: SimpleSnitch, GossipingPropertyFileSnitch)
+* `rack`: Name of the rack
+* `dc`: Name of the DC
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Either install Docker as mentioned requirements or install some ansible role which installs docker.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: cassandra_servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: bingoarun.cassandra-docker-cluster }
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Arun prasath
