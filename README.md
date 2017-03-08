@@ -1,4 +1,4 @@
-Role Name
+cassandra-docker-cluster
 =========
 
 Cassandra role to create a dockerized multi-node cassandra cluster.
@@ -33,7 +33,7 @@ Either install Docker as mentioned requirements or install some ansible role whi
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+To install cassandra cluster on 'cassandra_servers' group.
 
     - hosts: cassandra_servers
       roles:
